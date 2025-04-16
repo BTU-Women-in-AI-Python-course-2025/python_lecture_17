@@ -7,10 +7,6 @@
 - **Building APIs:**
   - Class-based Views - https://www.django-rest-framework.org/api-guide/views/#class-based-views
   - Function-Based Views - https://www.django-rest-framework.org/api-guide/views/#function-based-views
- 
-Absolutely! Here's a beginner-friendly task with the 📚 icon, tailored to your listed DRF topics:
-
----
 
 ### 📚 **Student Task: Create a Simple API with Django REST Framework**
 
