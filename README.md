@@ -7,4 +7,23 @@
 - **Building APIs:**
   - Class-based Views - https://www.django-rest-framework.org/api-guide/views/#class-based-views
   - Function-Based Views - https://www.django-rest-framework.org/api-guide/views/#function-based-views
-    
+ 
+Absolutely! Here's a beginner-friendly task with the 📚 icon, tailored to your listed DRF topics:
+
+---
+
+### 📚 **Student Task: Create a Simple API with Django REST Framework**
+
+1. **Install and set up Django REST Framework**  
+   - Add `'rest_framework'` to `INSTALLED_APPS` in `settings.py`.
+
+2. **Create a simple model** (e.g., `Book` with `title`, `author`, `published_date`).
+
+3. **Create a `ModelSerializer`** for the model.  
+   - Use `serializers.ModelSerializer`.
+
+4. **Create two views**:
+   - A **function-based view** to list all books.
+   - A **class-based view** to retrieve a single book by ID.
+
+5. **Register both views in `urls.py`**
