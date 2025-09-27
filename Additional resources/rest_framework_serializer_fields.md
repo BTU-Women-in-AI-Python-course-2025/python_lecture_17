@@ -32,7 +32,6 @@ DRF provides different field types to handle validation, transformation, and rep
 * **`DateField`** – Date only (`YYYY-MM-DD`)
 * **`TimeField`** – Time only (`HH:MM[:ss[.uuuuuu]]`)
 * **`DateTimeField`** – Full date & time
-* **`DurationField`** – Time duration (`timedelta`)
 
 ---
 
