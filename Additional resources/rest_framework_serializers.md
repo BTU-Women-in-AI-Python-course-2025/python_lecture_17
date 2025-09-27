@@ -85,60 +85,9 @@ You should get back the same data in the response.
 
 ---
 
-## 🧰 Summary
+## ➕ Example: `BookCreateSerializer` (ModelSerializer)
 
-| Feature           | Description             |
-| ----------------- | ----------------------- |
-| `Serializer`      | Manually defined fields |
-| `.is_valid()`     | Validates the input     |
-| `.validated_data` | Cleaned data            |
-| `.errors`         | Validation errors       |
-
----
-
-# 📦 Django REST Framework: ModelSerializer
-
----
-
-## 🔹 What is a ModelSerializer?
-
-A **ModelSerializer** is a shortcut in DRF that:
-
-* Automatically generates fields from a **Django model**.
-* Includes default `create()` and `update()` methods.
-* Reduces boilerplate compared to `serializers.Serializer`.
-
-> 🧠 Think of it as the DRF version of a Django ModelForm.
-
----
-
-## ✅ When to Use a ModelSerializer
-
-Use `serializers.ModelSerializer` when:
-
-* You **want to tie directly** to a Django model.
-* You don’t want to manually declare every field.
-* You need quick CRUD endpoints.
-
----
-
-## 🧱 Example: `Book` Model + `BookModelSerializer`
-
-### 📁 `models.py`
-
-```python
-from django.db import models
-
-class Book(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    published = models.DateField()
-
-    def __str__(self):
-        return self.title
-```
-
----
+If you actually want to **save books to the database**, use a `ModelSerializer`.
 
 ### 📁 `serializers.py`
 
@@ -146,7 +95,7 @@ class Book(models.Model):
 from rest_framework import serializers
 from .models import Book
 
-class BookModelSerializer(serializers.ModelSerializer):
+class BookCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ['id', 'title', 'author', 'published']
@@ -160,15 +109,14 @@ class BookModelSerializer(serializers.ModelSerializer):
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BookModelSerializer
-from .models import Book
+from .serializers import BookCreateSerializer
 
 @api_view(['POST'])
-def create_book_model(request):
-    serializer = BookModelSerializer(data=request.data)
+def create_book_db(request):
+    serializer = BookCreateSerializer(data=request.data)
     if serializer.is_valid():
-        book = serializer.save()  # saves to DB
-        return Response(BookModelSerializer(book).data, status=status.HTTP_201_CREATED)
+        book = serializer.save()  # Save to DB
+        return Response(BookCreateSerializer(book).data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 ```
 
@@ -176,7 +124,7 @@ def create_book_model(request):
 
 ## 🧪 Test It
 
-Send a POST request to `/api/create-book-model/` with:
+Send a POST request to `/api/create-book-db/` with:
 
 ```json
 {
@@ -186,26 +134,15 @@ Send a POST request to `/api/create-book-model/` with:
 }
 ```
 
-✅ This time, the book will be **saved in the database** and you’ll get back the stored object with its `id`.
-
----
-
-## 🧠 What Happens Under the Hood?
-
-| Step                                     | Purpose                        |
-| ---------------------------------------- | ------------------------------ |
-| `BookModelSerializer(data=request.data)` | Load data + map to `Book`      |
-| `is_valid()`                             | Validate the input             |
-| `save()`                                 | Creates and saves `Book` model |
-| `serializer.data`                        | Returns serialized object      |
+✅ This will **save the book in the database** and return the stored object with its `id`.
 
 ---
 
 ## 🧰 Summary
 
-| Feature           | Description                             |
-| ----------------- | --------------------------------------- |
-| `ModelSerializer` | Auto-generates fields from a model      |
-| `.is_valid()`     | Validates the input                     |
-| `.save()`         | Creates/updates the model instance      |
-| `.data`           | Returns serialized model data (with id) |
+| Feature           | Description             |
+| ----------------- | ----------------------- |
+| `Serializer`      | Manually defined fields |
+| `.is_valid()`     | Validates the input     |
+| `.validated_data` | Cleaned data            |
+| `.errors`         | Validation errors       |
