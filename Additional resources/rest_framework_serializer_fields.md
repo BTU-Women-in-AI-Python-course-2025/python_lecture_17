@@ -11,10 +11,8 @@ DRF provides different field types to handle validation, transformation, and rep
 ### ✅ Core Field Types
 
 * **`BooleanField`** – `True` / `False` values
-* **`NullBooleanField`** – Legacy nullable Boolean (deprecated, use `BooleanField(allow_null=True)`)
 * **`CharField`** – String input
 * **`EmailField`** – Validated email format
-* **`RegexField`** – String matching a regex pattern
 * **`SlugField`** – Short “slug” strings
 * **`URLField`** – Fully qualified URLs
 * **`UUIDField`** – UUID values
@@ -50,8 +48,6 @@ DRF provides different field types to handle validation, transformation, and rep
 * **`PrimaryKeyRelatedField`** – Uses the primary key of related model
 * **`StringRelatedField`** – Uses the model’s `__str__` representation
 * **`SlugRelatedField`** – Uses a slug field for relation
-* **`HyperlinkedRelatedField`** – Uses a URL hyperlink to represent relation
-* **`HyperlinkedIdentityField`** – URL that uniquely identifies object
 * **`ManyRelatedField`** – Handles lists of relations
 
 ---
