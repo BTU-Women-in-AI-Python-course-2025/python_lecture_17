@@ -6,6 +6,7 @@ from blog.models import BlogPost, BannerImage
 
 
 class BlogPostListSerializer(Serializer):
+    id = serializers.IntegerField()
     title = serializers.CharField(max_length=200)
     text = serializers.CharField()
     active = serializers.BooleanField()
