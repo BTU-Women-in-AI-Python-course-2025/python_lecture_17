@@ -15,11 +15,8 @@
 
 2. **Create a simple model** (e.g., `Book` with `title`, `author`, `published_date`).
 
-3. **Create a `ModelSerializer`** for the model.  
-   - Use `serializers.ModelSerializer`.
-
-4. **Create two views**:
+3. **Create two views**:
    - A **function-based view** to list all books.
    - A **class-based view** to retrieve a single book by ID.
 
-5. **Register both views in `urls.py`**
+4. **Register both views in `urls.py`**
