@@ -1,10 +1,10 @@
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from blog.models import BlogPost
-from blog.serializers import BlogPostDetailUpdateCreateSerializer, BlogPostListSerializer
+from blog.serializers import BlogPostDetailUpdateCreateSerializer, BlogPostListSerializer, BlogPostSerializer
 
 
 @api_view(['POST'])
@@ -97,3 +97,8 @@ class BlogPostDetailUpdateDeleteView(APIView):
         book.deleted = True
         book.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class BlogPostViewSet(viewsets.ModelViewSet):
+    queryset = BlogPost.objects.filter(deleted=False)
+    serializer_class = BlogPostSerializer
